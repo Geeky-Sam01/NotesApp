@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title%}Login{% endblock %}
+{% block content %}
+<form method="POST" class="needs-validation" novalidate>
+    <h3 class="text-center mb-3">Login</h3>
+    <div class="input-group pb-2">
+        <span class="input-group-text">Email</span>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required/>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="input-group pb-2">
+        <span class="input-group-text">Password</span>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
+    </div>
+    <button type="submit" class="btn btn-primary pt-2" id="sign-up-">Login</button>
+</form>
+{% endblock %}
