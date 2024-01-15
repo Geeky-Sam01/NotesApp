@@ -1,23 +1,93 @@
-{% extends "base.html" %}
-{% block title%}
-Home
-{% endblock %}
-{% block content %}
-<h1 align="center">Notes</h1>
-<div class="container-fluid">
-<ul class="list-group list-group-flush" id="notes">
-    {% for notes in user.notes%}
-    <li class="list-group-item">{{notes.data}}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick="deleteNote({{notes.id}})"></button>
-    </li>
-    {% endfor %}
-</ul>
-<form method="POST">
-    <textarea name="note" id="note" class="form-control"></textarea>
-    <br>
-    <div align="center">
-        <button type="submit" class="btn btn-primary">Add Note</button>
-    </div>
-</form>
+{% extends "base.html" %} {% block title%} Home {% endblock %} {% block content
+%}
+<div class="notes_bar">
+    <ul>
+        <li><h1 id="homeHeader">Notes</h1></li>
+        <!--Add add notes button here-->
+    </ul>
 </div>
+
+<div class="row">
+  {% for notes in user.notes %}
+  <div class="card g-col-4">
+    <div class="tools">
+      <div class="circle">
+        <span class="red box"></span>
+      </div>
+      <div class="circle">
+        <span class="yellow box"></span>
+      </div>
+      <div class="circle">
+        <span class="green box"></span>
+      </div>
+    </div>
+    <div class="card__content">
+      <div id="content_paragraph">
+        <p>
+            {% if notes.data|length > 10 %}
+                {{ notes.data[:20] ~ '...' }}
+            {% else %}
+                {{ notes.data }}
+            {% endif %}
+        </p>
+      </div>
+      <div class="del_btn">
+        <button
+          type="button"
+          class="btn btn-danger"
+          onClick="deleteNote({{notes.id}})"
+        >
+        <span class="material-symbols-outlined">
+            delete
+            </span>
+        </button>
+      </div>
+      <div class="edit_btn">
+        <button
+          type="button"
+          class="btn btn-success"
+          onClick="deleteNote({{notes.id}})"
+        >
+        <span class="material-symbols-outlined">
+            edit
+            </span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<!-- Button trigger modal -->
+<div>
+    <button type="button" class="btn btn-primary add_note_button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <span class="material-symbols-outlined position_add_button">add</span>    
+    </button>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">New Note</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="POST">
+                <textarea name="note" id="note" class="form-control"></textarea>
+                <br />
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Add Note</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
 {% endblock %}

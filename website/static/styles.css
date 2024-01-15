@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.notes_bar{
+    display: flex;
+    flex-direction: column;
+}
+.notes_bar li {
+    display: inline-block;
+    margin-right: 10px; /* Adjust the margin as needed for spacing between elements */
+}
+#homeHeader{
+    font-family: 'Bungee Spice', sans-serif;
+    font-size:3.5rem;;
+}
+
+.card {
+    width: 190px;
+    height: 254px;
+    margin: 0 auto;
+    background-color:#fffcfc;
+    border-radius: 8px;
+    z-index: 1;
+   }
+   
+   .tools {
+    display: flex;
+    align-items: center;
+    padding: 9px;
+   }
+   
+   .circle {
+    padding: 0 4px;
+   }
+   
+   .box {
+    display: inline-block;
+    align-items: center;
+    width: 10px;
+    height: 10px;
+    padding: 1px;
+    border-radius: 50%;
+   }
+   
+   .red {
+    background-color: #ff605c;
+   }
+   
+   .yellow {
+    background-color: #ffbd44;
+   }
+   
+   .green {
+    background-color: #00ca4e;
+}
+.card__content{
+    padding: 0 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.del_btn{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+.edit_btn {
+    position: absolute;
+    bottom: 1.25rem;
+    float: left;
+}
+
+.add_note_button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.position_add_button
+{
+    padding-top: 5px;
+    padding-right: 2px;
+    height: 3rem;
+}
+
+
+
+   
