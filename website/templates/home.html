@@ -1,15 +1,13 @@
 {% extends "base.html" %} {% block title%} Home {% endblock %} {% block content
 %}
-<div class="notes_bar">
-    <ul>
-        <li><h1 id="homeHeader">Notes</h1></li>
-        <!--Add add notes button here-->
-    </ul>
+<div>
+  {% if user_name %}
+    <h1 id="homeHeader">{{ user_name }}'s Notes</h1>
+  {% endif %}
 </div>
-
 <div class="row">
   {% for notes in user.notes %}
-  <div class="card g-col-4">
+  <div class="card g-col-4 mt-3 mb-3">
     <div class="tools">
       <div class="circle">
         <span class="red box"></span>
