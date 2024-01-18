@@ -14,7 +14,7 @@ def login():
         user= User.query.filter_by(email=mail).first()
         if user:
             if check_password_hash(user.password,password):
-                flash('Logged in successfully!',category='success')
+                flash(f'''Welcome home! {mail[:-10]}''',category='success')
                 login_user(user,remember=True)
                 return redirect(url_for('views.home'))
             else:
@@ -40,6 +40,7 @@ def signup():
         #authentication checks
         if user:
             flash('Email already exists,Please try logging in',category='error')
+            return redirect('/login')
         elif mail.count('@')!=1 or mail.count('.')<1 or mail.count('.')>2:
             flash('Invalid email address',category='error')
         elif len(firstname)<2:

@@ -1,12 +1,15 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins%3Awght%40400%3B500&display=swap%27%29%3B);
 *{
-    margin: 0;
-    padding: 0;
+    margin:0;
+    padding:0;
     box-sizing: border-box;
 }
+
 ul{
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+}
+.card_add{
+    width: 100%;
 }
 .notes_bar{
     display: flex;
@@ -21,78 +24,63 @@ ul{
     font-size:3.5rem;;
 }
 
-.card {
-    width: 190px;
-    height: 254px;
-    margin: 0 auto;
-    background-color:#fffcfc;
-    border-radius: 8px;
-    z-index: 1;
-   }
-   
-   .tools {
-    display: flex;
-    align-items: center;
-    padding: 9px;
-   }
-   
-   .circle {
-    padding: 0 4px;
-   }
-   
-   .box {
-    display: inline-block;
-    align-items: center;
-    width: 10px;
-    height: 10px;
-    padding: 1px;
-    border-radius: 50%;
-   }
-   
-   .red {
-    background-color: #ff605c;
-   }
-   
-   .yellow {
-    background-color: #ffbd44;
-   }
-   
-   .green {
-    background-color: #00ca4e;
+
+.loginform{
+    margin-top: 10%;
+    box-shadow: 0px 4px 9px 10px rgba(199,199,199,0.75);
+    width: 100%;
+    padding: 15px;
+    margin: auto;
 }
-.card__content{
-    padding: 0 10px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-.del_btn{
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-}
-.edit_btn {
-    position: absolute;
-    bottom: 1.25rem;
-    float: left;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background: #ececec;
 }
 
-.add_note_button {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
+/*------------ Login container ------------*/
+
+.box-area{
+    width: 930px;
 }
 
-.position_add_button
-{
-    padding-top: 5px;
-    padding-right: 2px;
-    height: 3rem;
+/*------------ Right box ------------*/
+
+.right-box{
+    padding: 40px 30px 40px 40px;
+}
+
+/*------------ Custom Placeholder ------------*/
+
+::placeholder{
+    font-size: 16px;
+}
+
+.rounded-4{
+    border-radius: 20px;
+}
+.rounded-5{
+    border-radius: 30px;
 }
 
 
+/*------------ For small screens------------*/
+
+@media only screen and (max-width: 768px){
+
+     .box-area{
+        margin: 0 10px;
+
+     }
+     .left-box{
+        height: 100px;
+        overflow: hidden;
+     }
+     .right-box{
+        padding: 20px;
+     }
+
+}
 
    

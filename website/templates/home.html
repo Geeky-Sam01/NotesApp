@@ -1,91 +1,176 @@
-{% extends "base.html" %} {% block title%} Home {% endblock %} {% block content
-%}
-<div>
-  {% if user_name %}
-    <h1 id="homeHeader">{{ user_name }}'s Notes</h1>
-  {% endif %}
-</div>
-<div class="row">
-  {% for notes in user.notes %}
-  <div class="card g-col-4 mt-3 mb-3">
-    <div class="tools">
-      <div class="circle">
-        <span class="red box"></span>
-      </div>
-      <div class="circle">
-        <span class="yellow box"></span>
-      </div>
-      <div class="circle">
-        <span class="green box"></span>
-      </div>
-    </div>
-    <div class="card__content">
-      <div id="content_paragraph">
-        <p>
-            {% if notes.data|length > 10 %}
-                {{ notes.data[:20] ~ '...' }}
-            {% else %}
-                {{ notes.data }}
-            {% endif %}
-        </p>
-      </div>
-      <div class="del_btn">
-        <button
-          type="button"
-          class="btn btn-danger"
-          onClick="deleteNote({{notes.id}})"
-        >
-        <span class="material-symbols-outlined">
-            delete
-            </span>
-        </button>
-      </div>
-      <div class="edit_btn">
-        <button
-          type="button"
-          class="btn btn-success"
-          onClick="deleteNote({{notes.id}})"
-        >
-        <span class="material-symbols-outlined">
-            edit
-            </span>
-        </button>
-      </div>
+{% extends "base.html" %} 
+{% block title%} Home {% endblock %} 
+{% block content%}
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-9 border border-danger">
+                <!-- Second Row -->
+                <div class="row d-inline-flex flex-wrap justify-content-around m-2">
+                        {% for notes in user.notes %}
+                        <div class="col-4">
+                            <!-- row2, column1 -->
+                            <div class="card m-2">
+                                <div class="card-header bg-secondary text-white">
+                                    <h5 class="m-0">Title</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Tag</h5>
+                                    <!-- <p class="card-text">This is a sample note. Customize it based on your needs.</p> -->
+                                    <p>
+                                        {% if notes.data|length > 10 %}
+                                            {{ notes.data[:20] ~ '...' }}
+                                        {% else %}
+                                            {{ notes.data }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <div class="row">
+                                            <small class="col">Created on: January 20, 2024</small>
+                                            <div class="del_btn col">
+                                                <button type="button" class="btn btn-danger" onClick="deleteNote({{notes.id}})">
+                                                    <span class="material-symbols-outlined"> delete </span>
+                                                </button>
+                                            </div>
+                                            <div class="edit_btn col">
+                                                <button type="button" class="btn btn-success" onClick="deleteNote({{notes.id}})">
+                                                    <span class="material-symbols-outlined"> edit </span>
+                                                </button>
+                                            </div>
+                                    </div>          
+                                </div>
 
-    </div>
-  </div>
-  {% endfor %}
-</div>
-<!-- Button trigger modal -->
-<div>
-    <button type="button" class="btn btn-primary add_note_button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        <span class="material-symbols-outlined position_add_button">add</span>    
-    </button>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">New Note</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form method="POST">
-                <textarea name="note" id="note" class="form-control"></textarea>
-                <br />
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary">Add Note</button>
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- Repeatedly keep adding this -->
+                        <div class="col-4 pt-2">
+                            <div class="card md-2">
+                                <div class="card-header bg-secondary text-white">
+                                    <h5 class="m-0 text-secondary"> Not so Important</h5>
+                                </div>
+                                <div class=" btn btn-block card-body" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                        <!-- <button type="button" class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                            <span class="material-symbols-outlined position_add_button">add</span>    
+                                        </button> -->
+                                        <!-- <button type="button" class="button">
+                                            <span class="button__text">Add Item</span>
+                                            <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+                                        </button> -->
+                                        <h5 class="card-title">Another Note? <i class="bi bi-plus-circle"></i></h5>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <div class="row">
+                                            <small class="col">To be Created Soon</small>
+                                            <div class="del_btn col">
+                                                <button type="button" class="btn btn-danger">
+                                                    <span class="material-symbols-outlined"></span>
+                                                </button>
+                                            </div>
+                                            <div class="edit_btn col">
+                                                <button type="button" class="btn btn-success">
+                                                    <span class="material-symbols-outlined"></span>
+                                                </button>
+                                            </div>
+                                    </div>          
+                                </div>
+                            </div>
+                        </div>
                 </div>
-              </form>
+            </div>
+            
+
+<style>
+    .button {
+        position: relative;
+        width: 150px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        border: 1px solid #34974d;
+        background-color: #3aa856;
+      }
+      
+      .button, .button__icon, .button__text {
+        transition: all 0.3s;
+      }
+      
+      .button .button__text {
+        transform: translateX(30px);
+        color: #fff;
+        font-weight: 600;
+      }
+      
+      .button .button__icon {
+        position: absolute;
+        transform: translateX(109px);
+        height: 100%;
+        width: 39px;
+        background-color: #34974d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .button .svg {
+        width: 30px;
+        stroke: #fff;
+      }
+      
+      .button:hover {
+        background: #34974d;
+      }
+      
+      .button:hover .button__text {
+        color: transparent;
+      }
+      
+      .button:hover .button__icon {
+        width: 148px;
+        transform: translateX(0);
+      }
+      
+      .button:active .button__icon {
+        background-color: #2e8644;
+      }
+      
+      .button:active {
+        border: 1px solid #2e8644;
+      }
+</style>
+
+
+            <!-- right side -->
+            <div class="col border border border-info">
+                <div>
+                    <button type="button" class="btn btn-primary rounded" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <span class="material-symbols-outlined position_add_button">add</span>    
+                    </button>
+                </div>
+            </div> 
+        </div>
+    </div>
+
+    <!------------------------------------ MODAL-------------------------->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">New Note</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    <textarea name="note" id="note" class="form-control"></textarea>
+                    <br />
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary">Add Note</button>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </form>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-
-
-  
-{% endblock %}
+{% endblock%}
